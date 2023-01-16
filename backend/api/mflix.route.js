@@ -4,7 +4,7 @@ import mflixCtrl from "./mflix.controller.js"
 const router = express.Router()
 
 // demonstration route
-// create .apiGetMflix
 router.route("/").get(mflixCtrl.apiGetMflix)
+router.route("/title").get(mflixCtrl.apiGetMflixTitle)
 
 export default router
