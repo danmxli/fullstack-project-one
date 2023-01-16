@@ -31,11 +31,11 @@ export default class mflixDAO {
             if ("title" in filters) {
                 query = { $text: { $search: filters["title"] } }
             }
-            else if ("title" in filters) {
-                query = { "title": { $eq: filters["title"] } }
-            }
             else if ("rated" in filters) {
-                query = { "filters": { $eq: filters["rated"] } }
+                query = { "rated": { $eq: filters["rated"] } }
+            }
+            else if ("year" in filters) {
+                query = { "year": { $eq: filters["year"] } }
             }
         }
 
@@ -65,6 +65,21 @@ export default class mflixDAO {
             console.error(`unable to convert documents, ${e}`)
             return { mflixList: [], totalNumMflix: 0 }
         }
+    }
+
+    // get tite fuction
+    static async getTitle() {
+        let title = []
+        try {
+            title = await mflix.distinct("title")
+            return title
+
+        }
+        catch (e) {
+            console.error(`Unable to get titles, ${e}`)
+        }
+
+        return title
     }
 
 
