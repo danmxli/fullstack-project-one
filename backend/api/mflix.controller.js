@@ -33,25 +33,25 @@ export default class RestaurantsController {
         }
         res.json(response)
     }
-    static async apiGetRestaurantById(req, res, next) {
+    static async apiGetMflixById(req, res, next) {
         try {
             let id = req.params.id || {}
-            let restaurant = await mflixDAO.getRestaurantByID(id)
-            if (!restaurant) {
+            let restaurant = await mflixDAO.getMflixByID(id)
+            if (!mflix) {
                 res.status(404).json({ error: "Not found" })
                 return
             }
-            res.json(restaurant)
+            res.json(mflix)
         } catch (e) {
             console.log(`api, ${e}`)
             res.status(500).json({ error: e })
         }
     }
 
-    static async apiGetRestaurantCuisines(req, res, next) {
+    static async apiGetMflixTitle(req, res, next) {
         try {
-            let cuisines = await mflixDAO.getCuisines()
-            res.json(cuisines)
+            let titles = await mflixDAO.getTitle()
+            res.json(titles)
         } catch (e) {
             console.log(`api, ${e}`)
             res.status(500).json({ error: e })
